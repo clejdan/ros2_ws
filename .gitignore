@@ -1,0 +1,26 @@
+# --- colcon build artifacts ---
+# No leading slash, so these match at any depth. That matters here: colcon
+# was run once from inside src/, so src/build, src/install and src/log exist
+# too and must be ignored just the same.
+build/
+install/
+log/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# --- editors / OS ---
+# .vscode holds browse.vc.db, the C/C++ IntelliSense index. It is 1.1 GB here.
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# --- recorded rosbags ---
+# Binary recordings that grow fast and are reproducible by re-recording.
+# To keep a specific one anyway: git add -f bags/<name>
+bags/

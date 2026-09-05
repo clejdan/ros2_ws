@@ -1,0 +1,57 @@
+ROS2 (lyrical) BASIC COMMANDS CHEAT SHEET
+==========================================
+
+Every new terminal needs ROS sourced (already auto-done via ~/.bashrc):
+  source /opt/ros/lyrical/setup.bash
+
+--- NODES ---
+ros2 node list                     # list running nodes
+ros2 node info <node_name>         # details about a node (topics, services, params)
+
+--- TOPICS ---
+ros2 topic list                    # list active topics
+ros2 topic echo <topic_name>       # print messages published on a topic
+ros2 topic info <topic_name>       # message type + pub/sub counts
+ros2 topic hz <topic_name>         # publish rate
+ros2 topic pub <topic_name> <msg_type> "<data>"   # publish a message manually
+
+--- SERVICES ---
+ros2 service list                  # list available services
+ros2 service call <service_name> <srv_type> "<request>"
+
+--- PARAMETERS ---
+ros2 param list                    # list params for all nodes
+ros2 param get <node_name> <param_name>
+ros2 param set <node_name> <param_name> <value>
+
+--- PACKAGES ---
+ros2 pkg list                      # list installed packages
+ros2 pkg executables <pkg_name>    # list runnable executables in a package
+
+--- RUNNING NODES ---
+ros2 run <pkg_name> <executable_name>       # run a single node
+ros2 launch <pkg_name> <launch_file>        # run a launch file
+
+--- TURTLESIM EXAMPLE ---
+ros2 run turtlesim turtlesim_node           # start the turtle sim window
+ros2 run turtlesim turtle_teleop_key        # control turtle with arrow keys
+
+--- VISUALIZATION ---
+rqt --standalone rqt_graph          # rqt_graph is NOT on PATH directly, use this form
+rqt                                  # general rqt GUI, load plugins from Plugins menu
+rviz2                                # 3D visualization tool
+
+--- BAGS (recording/playback) ---
+ros2 bag record <topic_name>        # record a topic to a bag file
+ros2 bag play <bag_file>            # replay a recorded bag
+ros2 bag info <bag_file>            # info about a bag file
+
+--- BAGS EXAMPLES ---
+ros2 bag record -a -o bag1                      # everything
+ros2 bag record -o bag1 --topics /my_number /rosout   # several
+ros2 bag record -o bag1 -e '/my_.*'             # by regex
+
+
+--- WORKSPACE BUILD (if using colcon workspace) ---
+colcon build                        # build workspace
+source install/setup.bash           # source your local workspace overlay
