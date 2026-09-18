@@ -11,6 +11,9 @@ class NumberCounterNode(Node):
         self.number_subscriber_ = self.create_subscription(Int64, "number", self.callback_number, 10)
         self.reset_counter_service_ = self.create_service(ResetCounter, "reset_counter", self.callback_reset_counter)
         self.get_logger().info("Number Counter has been started.")
+    def callback_number(self, msg:Int64):
+        self.counter_ += msg.data
+        self.get_logger().info("Counter: " + str(self.counter_))    
 
     def callback_reset_counter(self, request: ResetCounter.Request, response: ResetCounter.Response):
         if request.reset_value < 0:
