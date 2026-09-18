@@ -9,6 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(example_interfaces REQUIRED)
+find_package(my_robot_interfaces REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -26,11 +27,11 @@ add_executable(test_node src/my_first_node.cpp)
 add_executable(number_publisher src/number_publisher.cpp)
 add_executable(number_counter src/number_counter.cpp)
 
-
 target_link_libraries(test_node rclcpp::rclcpp)
-target_link_libraries(number_publisher rclcpp::rclcpp ${example_interfaces_TARGETS})
-target_link_libraries(number_counter rclcpp::rclcpp ${example_interfaces_TARGETS})
-
+target_link_libraries(number_publisher rclcpp::rclcpp ${example_interfaces_TARGETS}
+${my_robot_interfaces_TARGETS})
+target_link_libraries(number_counter rclcpp::rclcpp ${example_interfaces_TARGETS}
+${my_robot_interfaces_TARGETS})
 
 install(TARGETS
   test_node

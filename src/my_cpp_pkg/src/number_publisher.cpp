@@ -1,6 +1,5 @@
 #include "rclcpp/rclcpp.hpp"
 #include "example_interfaces/msg/int64.hpp"
-#include "my_robot_interfaces/srv/reset_counter.hpp"
 
 class NumberPublisherNode : public rclcpp::Node
 {

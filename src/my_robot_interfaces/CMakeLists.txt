@@ -17,6 +17,7 @@ find_package(rosidl_default_generators REQUIRED)
 # to the package root.
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/HardwareStatus.msg"
+  "srv/ResetCounter.srv"
 )
 
 # tells other packages that depend on us that they also need the rosidl
